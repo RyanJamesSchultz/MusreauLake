@@ -29,7 +29,7 @@ idB=-1;
 ddB=1;
 
 % Load in catalogue data.
-file='/Users/rjs10/Desktop/Musreau/data/Catalogue/final/Musreau_Cat.csv';
+file='TableS1.csv';
 [lat_eq,lon_eq,dep_eq,Teq,Meq,IDeq]=parseRYN(file,latB,lonB,depB,tB,mB,idB,ddB);
 
 % GR-MFD stats.
