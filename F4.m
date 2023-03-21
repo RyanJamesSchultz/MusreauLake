@@ -10,7 +10,7 @@ azi=38;
 % Get the strike-dip angles of the faults.
 %[strike,dip]=parseMT('/Users/rjs10/Desktop/Musreau/data/MTs/Yu2021_MT.csv','Yu');
 %[strike,dip]=parseMT('/Users/rjs10/Desktop/Musreau/data/MTs/Li2022_MT.csv','Li');
-[strike,dip,IDmt]=parseMT('/Users/rjs10/Desktop/Musreau/data/MTs/CompositeMT.csv','both');
+[strike,dip,IDmt]=parseMT('CompositeMT.csv','both');
 %I=[12]; strike=strike(I); dip=dip(I); IDmt=IDmt(I);
 
 % Get the overpressure values for the known faults.
@@ -35,10 +35,10 @@ ddB=1;
 Mc=0.2;
 
 % Load in catalogue, injection, and station data.
-file='/Users/rjs10/Desktop/Musreau/data/Catalogue/final/Musreau_Cat.csv';
+file='TableS1.csv';
 [lat_eq,lon_eq,dep_eq,Teq,Meq,IDeq]=parseRYN(file,latB,lonB,depB,tB,mB,idB,ddB);
-load('/Users/rjs10/Desktop/Musreau/data/Injection/INJ.mat','S');
-load('/Users/rjs10/Desktop/Musreau/data/Stations/Station_XMLs/STN.mat','D');
+load('INJ.mat','S');
+load('STN.mat','D');
 
 % Make the magnitude size axis.
 Rs=getMscale(Meq)/5;
