@@ -29,15 +29,13 @@ idB=-1;
 ddB=1;
 
 % Load in catalogue data.
-file='/Users/rjs10/Desktop/Musreau/data/Catalogue/final/Musreau_Cat.csv';
+file='TableS1.csv';
 [lat_eq,lon_eq,dep_eq,Teq,Meq,IDeq]=parseRYN(file,latB,lonB,depB,tB,mB,idB,ddB);
-%file='/Users/rjs10/Desktop/Musreau/data/Catalogue/Kakwa_Event_Summary.csv';
-%[lat_eq,lon_eq,dep_eq,Teq,Meq]=parseNMX(file,latB,lonB,depB,tB,mB);
-file='/Users/rjs10/Desktop/Musreau/data/Catalogue/AGScatalogue.csv';
+file='AGScatalogue.csv';
 [lat_ag,lon_ag,dep_ag,Tag,Mag]=parseAGS(file,latB,lonB,depB,tB,mB);
 
 % Load in injection data.
-load('/Users/rjs10/Desktop/Musreau/data/Injection/INJ.mat','S');
+load('INJ.mat','S');
 
 % Make time axis.
 Ts=datenum(2016,01,01,00,00,00); % Injection start date (1 July 2017).
