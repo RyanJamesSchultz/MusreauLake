@@ -15,10 +15,10 @@ lonDB=[-119 -118.2]; latDB=[54.35 54.75];
 Mc=0.2;
 
 % Load in catalogue, injection, and station data.
-file='/Users/rjs10/Desktop/Musreau/data/Catalogue/final/Musreau_Cat.csv';
+file='TableS1.csv';
 [lat_eq,lon_eq,dep_eq,Teq,Meq,IDeq]=parseRYN(file,latB,lonB,depB,tB,mB,idB,ddB);
-load('/Users/rjs10/Desktop/Musreau/data/Injection/INJ.mat','S');
-load('/Users/rjs10/Desktop/Musreau/data/Stations/Station_XMLs/STN.mat','D');
+load('INJ.mat','S');
+load('STN.mat','D');
 
 % Make the magnitude size axis.
 Rs=getMscale(Meq)/2;
