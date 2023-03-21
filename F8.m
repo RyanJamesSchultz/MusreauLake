@@ -20,9 +20,9 @@ idB=-1;
 ddB=-1;
 
 % Load in catalogue & injection data.
-file='/Users/rjs10/Desktop/Musreau/data/Catalogue/final/Musreau_Cat.csv';
+file='TableS1.csv';
 [lat_eq,lon_eq,dep_eq,Teq,Meq,IDeq]=parseRYN(file,latB,lonB,depB,tB,mB,idB,ddB);
-load('/Users/rjs10/Desktop/Musreau/data/Injection/INJ.mat','S');
+load('INJ.mat','S');
 
 % Make time axis.
 Ts=datenum(2016,01,01,00,00,00); % Injection start date (1 July 2017).
