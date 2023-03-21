@@ -11,10 +11,10 @@ idB=-1;
 ddB=1;
 
 % Load in catalogue, injection, and station data.
-file='/Users/rjs10/Desktop/Musreau/data/Catalogue/final/Musreau_Cat.csv';
+file='TableS1.csv';
 [lat_eq,lon_eq,dep_eq,Teq,Meq,IDeq]=parseRYN(file,latB,lonB,depB,tB,mB,idB,ddB);
-load('/Users/rjs10/Desktop/Musreau/data/Injection/INJ.mat','S');
-load('/Users/rjs10/Desktop/Musreau/data/Stations/Station_XMLs/STN.mat','D');
+load('INJ.mat','S');
+load('STN.mat','D');
 
 % Flip the time ordering to show newer events on top.
 I=fliplr(1:length(Teq));
