@@ -1,6 +1,6 @@
 # MusreauLake
 
-These files are a collection of Matlab programs and scripts used to create the figures in a recent paper [Schultz et al., 2023].
+These files are a collection of Matlab programs and scripts used to create the figures for a study [Schultz et al., 2023].
 
 References: 
             
