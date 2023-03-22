@@ -48,11 +48,19 @@ Vend=0;
 Eh=cumsum(compute_hydraulic_energy(S,Tv));
 [Mbr1,Mbr2,Mul]=NRBE(Meq,Mc,b);
 
+% Get the time-sequencing of big magnitude records.
+Mmax=cummax(Meq);
+[~,I]=unique(Mmax);
+Mmax=Mmax(I);
+Tmax=Teq(I);
+Vmax=interp1(Tv,Vc,Tmax,'linear');
+
 %%% Plot.
 figure(5); clf;
 % Plot SI stuff (linear scale).
 axL1=subplot(321);
 plot(Vs,SIGMA,'-o'); hold on;
+plot(Vmax,interp1(Vs,SIGMA,Vmax,'linear'),'x');
 plot(v1*[1 1],ylim(),'--k');
 plot(v2*[1 1],ylim(),'--k');
 ylabel('Seismogenic Index'); xlabel('Cumulative Injected Volume (m^3)');
@@ -61,6 +69,7 @@ grid on;
 % Plot SI stuff (log scale).
 axR1=subplot(322);
 semilogx(Vs,SIGMA,'-o'); hold on;
+semilogx(Vmax,interp1(Vs,SIGMA,Vmax,'linear'),'x');
 semilogx(v1*[1 1],ylim(),'--k');
 semilogx(v2*[1 1],ylim(),'--k');
 ylabel('Seismogenic Index'); xlabel('Cumulative Injected Volume (m^3)');
@@ -69,6 +78,7 @@ grid on;
 % Plot Mo stuff (linear scale).
 axL2=subplot(323);
 plot(Vm,Mom,'-o'); hold on;
+plot(Vmax,interp1(Vm,Mom,Vmax,'linear'),'x');
 plot(Vfit_m,Mfitm,'-k');
 plot(Vfit_g,Mfitg,':k');
 plot(v1*[1 1],ylim(),'--k');
@@ -82,6 +92,7 @@ grid on;
 % Plot Mo stuff (log scale).
 axR2=subplot(324);
 loglog(Vm,Mom,'-o'); hold on;
+loglog(Vmax,interp1(Vm,Mom,Vmax,'linear'),'x');
 loglog(Vfit_m,Mfitm,'-k');
 loglog(Vfit_g,Mfitg,':k');
 loglog(Vfit_m,McGarr(Vfit_m,30,'cumulative'),'--k');
@@ -95,7 +106,9 @@ xlim([min(Vs) max(Vs)]);
 grid on;
 % Plot SE stuff (linear scale).
 axL3=subplot(325);
-plot(Vm,(0.46/(20*1000))*Mom./interp1(Vc+(1:length(Vc))*min(Vc(Vc>0))/1e6,Eh,Vm,'linear',0),'-o'); hold on;
+Seff=(0.46/(20*1000))*Mom./interp1(Vc+(1:length(Vc))*min(Vc(Vc>0))/1e6,Eh,Vm,'linear',0);
+plot(Vm,Seff,'-o'); hold on;
+plot(Vmax,interp1(Vm,Seff,Vmax,'linear'),'x');
 plot(v1*[1 1],ylim(),'--k');
 plot(v2*[1 1],ylim(),'--k');
 ylabel('Seismic Efficiency (-)');
@@ -104,7 +117,8 @@ xlim([0 max(Vs)]);
 grid on;
 % Plot SE stuff (log scale).
 axR3=subplot(326);
-loglog(Vm,(0.46/(20*1000))*Mom./interp1(Vc+(1:length(Vc))*min(Vc(Vc>0))/1e6,Eh,Vm,'linear',0),'-o'); hold on;
+loglog(Vm,Seff,'-o'); hold on;
+loglog(Vmax,interp1(Vm,Seff,Vmax,'linear'),'x');
 loglog(v1*[1 1],ylim(),'--k');
 loglog(v2*[1 1],ylim(),'--k');
 ylabel('Seismic Efficiency (-)');
