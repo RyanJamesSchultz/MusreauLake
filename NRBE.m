@@ -2,7 +2,7 @@ function [Mrb1, Mrb2, Mul]=NRBE(M,Mc,b)
   % Function to determine the next record breaking event and upper-limits
   % [Mendecki, 2016; Cao et al., 2020; Verdon & Bommer, 2021]. 
   % This routine simply applies the relationships for record-breaking 
-  % statistics theory [Tata, 1969], as applied to earthquake sequences.
+  % statistics theory [Tata, 1969; Cooke, 1979], as applied to earthquake sequences.
   % 
   % M  - Earthquake magnitudes (same units as Mc, ordered temporally).
   % Mc - Magnitude cut-off (same units as M).
@@ -11,6 +11,7 @@ function [Mrb1, Mrb2, Mul]=NRBE(M,Mc,b)
   % References:
   % 
   % Cao, N.T., Eisner, L., & Jechumtálová, Z. (2020). Next record breaking magnitude for injection induced seismicity. First Break, 38(2), 53-57, doi: 10.3997/1365-2397.fb2020010.
+  % Cooke, P. (1979). Statistical inference for bounds of random variables. Biometrika, 66(2), 367-374, doi: 10.1093/biomet/66.2.367.
   % Tata, M.N. (1969). On outstanding values in a sequence of random variables. Probability Theory and Related Fields, 12 (1), 9–20,doi:10.1007/BF00538520.
   % Mendecki, A.J. (2016), Mine Seismology Reference Book: Seismic Hazard, Institute of Mine Seismology, ISBN 978-0-9942943-0-2.
   % Verdon, J.P., & Bommer, J.J. (2021). Green, yellow, red, or out of the blue? An assessment of Traffic Light Schemes to mitigate the impact of hydraulic fracturing-induced seismicity. Journal of Seismology, 25(1), 301-326, doi: 10.1007/s10950-020-09966-9.
@@ -57,15 +58,15 @@ return;
 % Subroutine.
 function [Mrb1, Mrb2, Mul]=nrbe_sub(M,beta)
   % Subrountine to compute the upper-limit and next record-breaking event 
-  % forecasts, based on order statistics [Mendecki, 2016].
+  % forecasts, based on order statistics [Cooke, 1976; Mendecki, 2016].
   % Call this routine n-times to get the time series progression.
   %
   
-  % Compute the vectors needed for the upper-limit magnitude.
+  % Compute the vectors needed for the upper-limit magnitude (Cooke, 1976; near Eqn 3).
   M_maxo=sort(unique(cummax(M)),'descend');
   n=length(M_maxo);
-  i=1:(n-1); i=((1-i/n).^n-(1-(i+1)/n).^n);
-  Sul=sum(M_maxo(2:end).*i);
+  i=0:(n-1); i=((1-i/n).^n-(1-(i+1)/n).^n);
+  Sul=sum(M_maxo(1:end).*i);
   
   % Compute the upper-limit magnitude (Eqn 38).
   if(isempty(M_maxo))
