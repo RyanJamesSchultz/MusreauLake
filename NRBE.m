@@ -16,6 +16,7 @@ function [Mrb1, Mrb2, Mul]=NRBE(M,Mc,b)
   % Mendecki, A.J. (2016), Mine Seismology Reference Book: Seismic Hazard, Institute of Mine Seismology, ISBN 978-0-9942943-0-2.
   % Verdon, J.P., & Bommer, J.J. (2021). Green, yellow, red, or out of the blue? An assessment of Traffic Light Schemes to mitigate the impact of hydraulic fracturing-induced seismicity. Journal of Seismology, 25(1), 301-326, doi: 10.1007/s10950-020-09966-9.
   %
+  % Written by Ryan Schultz.
   
   % Check dimensions of input vector.
   if(~isrow(M))
